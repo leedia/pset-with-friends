@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 /* GET New User page. */
 router.get('/newuser', function(req, res) {
-    res.render('newuser', { title: 'Add New User' });
+    res.render('newuser', { title: 'Create your profile' });
 });
 
 /* POST to Add User Service */
@@ -22,7 +22,7 @@ router.post('/adduser', function(req, res) {
     var userEmail = req.body.useremail;
 
     // Set our collection (must match the collection you define in your MongoDB)
-    var collection = db.get('testcollection');
+    var collection = db.get('usercollection');
 
     // Submit to the DB
     collection.insert({
@@ -50,7 +50,7 @@ router.get('/helloworld', function(req, res) {
 /* GET Userlist page. */
 router.get('/userlist', function(req, res) {
     var db = req.db;
-    var collection = db.get('testcollection');
+    var collection = db.get('usercollection');
     collection.find({},{},function(e,docs){
         res.render('userlist', {
             "userlist" : docs
